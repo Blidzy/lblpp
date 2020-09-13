@@ -71,6 +71,10 @@ void op(const char *inst, int& line)
     {int tmp = registers[i];
     registers[i] = registers[j];
     registers[j] = tmp;}
+    else if (strncmp(inst, "SHR", 3))
+    {registers[i]>>= registers[j]}
+    else if (strncmp(inst, "SHL", 3))
+    {registers[i]<<= registers[j]}
     else if (strncmp(inst, "CLS_",4))
     {registers[j]=0;}
     else if (strncmp(inst, "END_",4)==0)
