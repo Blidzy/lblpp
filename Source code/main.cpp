@@ -72,9 +72,9 @@ void op(const char *inst, int& line)
     registers[i] = registers[j];
     registers[j] = tmp;}
     else if (strncmp(inst, "SHR", 3))
-    {registers[i]>>= registers[j]}
+    {registers[i]>>= registers[j];}
     else if (strncmp(inst, "SHL", 3))
-    {registers[i]<<= registers[j]}
+    {registers[i]<<= registers[j];}
     else if (strncmp(inst, "CLS_",4))
     {registers[j]=0;}
     else if (strncmp(inst, "END_",4)==0)
@@ -99,15 +99,34 @@ void op(const char *inst, int& line)
     {if (registers[i] > registers[j]){registers[8]++;}}
     else if (strncmp(inst, "SOE",3)==0)
     {if (registers[i] < registers[j]){registers[8]++;}}
-    else { std::cerr << "Error : Unknow instruction " << "-> " << Program[i] << std::endl;exit(1);}
+     else if (inst == "BREAK")
+    {exit(0);}
+     else { std::cerr << "Error : Unknow instruction " << "-> " << Program[i] << std::endl;exit(1);}
     line = registers[8];
 }
 
 int main(int argc, char* argv[])
 {
-    LoadFile(argv[1]);
-    for(int i=0; i<Program.size(); ++i)
+    if (argv[0] == "-r" || argv[0] == "--run")
     {
-        op (Program[i], i);
+        LoadFile(argv[1]);
+        for(int i=0; i<Program.size(); ++i)
+        {
+            op (Program[i], i);
+        }
     }
+
+    else if (argv[0] =="-i" || argv[0] =="--shell")
+    {   char *command;
+        int i = 0;
+    while (0==0)
+    {
+        getline(stdin, command);
+        op (command, i);
+        i++;
+    }
+
+    }
+
+    else {printf("Command not found : %s", argv[0]);}
 }
