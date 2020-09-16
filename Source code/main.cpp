@@ -121,7 +121,7 @@ int main(int argc, char* argv[])
         int i = 0;
     while (0==0)
     {
-        getline(stdin, command);
+        fgets(command, 6, stdin);
         op (command, i);
         i++;
     }
