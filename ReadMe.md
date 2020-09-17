@@ -29,3 +29,6 @@ Documentation avaible here : https://github.com/Blidzy/lblpp/wiki
 
 ## Builds :
 Builds avaible here : https://github.com/Blidzy/lblpp/releases
+
+# Important
+i have accidentally broke every thing, here, except wiki. So, releases, source code etc are not usable 
